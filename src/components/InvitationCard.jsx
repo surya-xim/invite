@@ -15,7 +15,7 @@ const InvitationCard = () => {
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
             style={{
                 width: '100vw',
-                height: '100vh',
+                height: '100dvh', // Use dynamic viewport height for mobile browsers
                 display: 'flex',
                 flexDirection: 'column',
                 // background: 'linear-gradient(135deg, #cd6ca6 0%, #a63e7e 100%)', // Handled by animate
@@ -219,7 +219,7 @@ const InvitationCard = () => {
                             style={{
                                 width: '100%',
                                 height: 'auto',
-                                maxHeight: '72vh', // Increased slightly
+                                maxHeight: '65vh', // Slightly reduced to ensure footer fits
                                 objectFit: 'contain',
                                 display: 'block'
                             }}
@@ -238,7 +238,7 @@ const InvitationCard = () => {
                     width: '100%',
                     display: 'flex',
                     justifyContent: 'center',
-                    paddingBottom: '24px',
+                    paddingBottom: 'max(20px, env(safe-area-inset-bottom))', // Handle iPhone home indicator
                     paddingTop: '10px',
                     zIndex: 20
                 }}
