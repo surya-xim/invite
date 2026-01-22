@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Phone, Mail, Instagram } from 'lucide-react';
+import { Globe, Phone, Mail, Instagram, MapPin } from 'lucide-react';
 
 const InvitationCard = () => {
     return (
         <motion.div
+            onContextMenu={(e) => e.preventDefault()}
             animate={{
                 background: [
                     'linear-gradient(135deg, #cd6ca6 0%, #a63e7e 100%)',
@@ -20,7 +21,9 @@ const InvitationCard = () => {
                 flexDirection: 'column',
                 // background: 'linear-gradient(135deg, #cd6ca6 0%, #a63e7e 100%)', // Handled by animate
                 overflow: 'hidden',
-                position: 'relative'
+                position: 'relative',
+                userSelect: 'none',
+                WebkitUserSelect: 'none'
             }}>
             {/* Logo/Icon Header */}
             <motion.div
@@ -43,10 +46,12 @@ const InvitationCard = () => {
                 <img
                     src="/Glazed Icon.png"
                     alt="Glazed Logo"
+                    draggable="false"
                     style={{
                         width: '60px',
                         height: 'auto',
-                        filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.1))'
+                        filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.1))',
+                        pointerEvents: 'none'
                     }}
                 />
             </motion.div>
@@ -210,20 +215,36 @@ const InvitationCard = () => {
                         style={{
                             width: '100%',
                             display: 'flex',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+                            position: 'relative' // For overlay
                         }}
                     >
                         <img
                             src="/Asset 5MPS CASsssTssss III.png"
                             alt="Invitation Card"
+                            draggable="false"
                             style={{
                                 width: '100%',
                                 height: 'auto',
                                 maxHeight: '65vh', // Slightly reduced to ensure footer fits
                                 objectFit: 'contain',
-                                display: 'block'
+                                display: 'block',
+                                // Fix dullness: Increase saturation and contrast
+                                filter: 'saturate(1.4) contrast(1.15) brightness(1.05)',
+                                pointerEvents: 'none', // Prevent direct interaction
+                                WebkitUserDrag: 'none',
+                                userSelect: 'none'
                             }}
                         />
+                        {/* Transparent overlay for extra protection */}
+                        <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            zIndex: 10
+                        }} />
                     </div>
                 </motion.div>
             </motion.div>
@@ -279,6 +300,10 @@ const InvitationCard = () => {
 
                     {/* Icons Row */}
                     <div style={{ display: 'flex', gap: '16px' }}>
+                        <a href="https://maps.app.goo.gl/AWo9c2XveKNi8w1G6" target="_blank" rel="noopener noreferrer" style={{ color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }} aria-label="Location">
+                            <MapPin size={18} strokeWidth={2.2} />
+                        </a>
+
                         <a href="tel:+919861297221" style={{ color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }} aria-label="Call">
                             <Phone size={18} strokeWidth={2.2} />
                         </a>
